@@ -1,0 +1,45 @@
+Produto
+{
+	Static int id;
+
+	String Nome
+	Boolean Perecivel
+	Date Validade
+	String Fornecedor / Marca
+	Int PesoLiq 
+	Int Volume
+	Boolean isLiquido
+	Int Id
+
+}
+
+Cotacao
+{
+	Int ProductId
+	Float Preco
+	Date DataCotacao
+	String Fornecedor
+
+}	
+
+1 numero < 31
+1 numero < 12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
