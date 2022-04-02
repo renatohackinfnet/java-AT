@@ -1,8 +1,56 @@
 package br.edu.infnet.CommonUse;
 
+import br.edu.infnet.CommonUse.Exceptions.*;
+
 import java.util.Calendar;
+import java.util.Scanner;
+
+import static java.lang.System.in;
 
 public class Tools {
+
+    private static final Scanner input = new Scanner(in);
+
+    public static String getStringInput() throws EmptyStringException {
+        String inputStr = input.nextLine();
+
+        if (inputStr.isBlank()) {
+            throw new EmptyStringException("Voce nao pode digitar um valor vazio.");
+        }
+
+        return inputStr;
+    }
+
+    public static double getNumberInput() throws NumberFormatException, EmptyStringException {
+        String doubleStr = getStringInput();
+
+        if (!isNumeric(doubleStr)) {
+            throw new NumberFormatException("Voce deve inserir um numero.");
+        }
+        else {
+            return Double.parseDouble(doubleStr);
+        }
+    }
+
+    public static int getIntegerInput() throws NotInteger, EmptyStringException {
+        double d;
+        try{
+            d = getNumberInput();
+            if (d % 1 == 0) {
+                return (int) d;
+            }
+            else {
+                throw new NotInteger("Você deve inserir um numero inteiro.");
+            }
+        } catch (NumberFormatException e){
+            throw new NotInteger("Você deve digitar um numero inteiro.");
+        }
+
+    }
+
+    public static boolean checkIfInRange(double initialValue, double finalValue, double valor){
+        return valor >= initialValue && valor <= finalValue;
+    }
 
     public static boolean isDateValid(String data) {
 
@@ -35,12 +83,7 @@ public class Tools {
     public static boolean isPrecoValid(String preco){
         String precoFixed = preco.replace(",", ".");
 
-        if (isNumeric(precoFixed)){
-            return !(Float.parseFloat(precoFixed) <= 0);
-        }
-        else return false;
-
-
+        return (isNumeric(precoFixed) && Float.parseFloat(precoFixed) > 0);
     }
 
     public static boolean isNumeric(String strNum) {
@@ -53,5 +96,13 @@ public class Tools {
             return false;
         }
         return true;
+    }
+
+    public static void println(String msg){
+        System.out.println(msg);
+    }
+
+    public static void print(String msg){
+        System.out.print(msg);
     }
 }

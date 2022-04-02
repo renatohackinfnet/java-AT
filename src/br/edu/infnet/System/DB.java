@@ -1,5 +1,6 @@
 package br.edu.infnet.System;
 
+import br.edu.infnet.CommonUse.Tools;
 import br.edu.infnet.Produtos.Cotacao;
 import br.edu.infnet.Produtos.Produto;
 
@@ -16,10 +17,12 @@ public class DB {
     // CREATE
     public void insertCotacao(Cotacao cotacao){
         this.cotacoes.add(cotacao);
+        Tools.println(String.format("A cotacao foi cadastrada com o id %s. \n\n\n", cotacao.getCotacaoId()));
     }
 
     public void insertProduto(Produto produto){
         this.produtos.add(produto);
+        Tools.println(String.format("O produto foi cadastrado com o id %s. \n\n\n", produto.getProductId()));
     }
 
 
@@ -99,6 +102,14 @@ public class DB {
         return cotacaoList;
     }
 
+    public ArrayList<Cotacao> getCotacoesList(){
+        return this.cotacoes;
+    }
+
+    public ArrayList<Produto> getProdutosList(){
+        return this.produtos;
+    }
+
 
     //UPDATE
     public void updateProduto(int produtoId, boolean isPerecivel, String tipoProduto){
@@ -130,7 +141,7 @@ public class DB {
     public static DB getInstance(){
         if (DB.db == null){
             DB.db = new DB();
-            return new DB();
+            return db;
         }
         else return DB.db;
     }

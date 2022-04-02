@@ -4,6 +4,8 @@ import br.edu.infnet.CommonUse.Exceptions.DataInvalidaException;
 import br.edu.infnet.CommonUse.Exceptions.PrecoInvalidoException;
 import br.edu.infnet.CommonUse.Tools;
 
+import java.util.Objects;
+
 public class Cotacao {
 
     private static int id = 1;
@@ -52,5 +54,25 @@ public class Cotacao {
 
     public int getCotacaoId() {
         return this.cotacaoId;
+    }
+
+
+    // OVERRIDE
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Cotacao cotacao = (Cotacao) o;
+        return productId == cotacao.productId && Float.compare(cotacao.preco, preco) == 0 && dataCotacao.equals(cotacao.dataCotacao) && fornecedorCotacao.equals(cotacao.fornecedorCotacao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, preco, dataCotacao, fornecedorCotacao);
     }
 }

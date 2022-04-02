@@ -2,6 +2,8 @@ package br.edu.infnet.Produtos;
 
 import br.edu.infnet.CommonUse.Tools;
 
+import java.util.Objects;
+
 public class Produto {
 
     private static int id = 1;
@@ -54,5 +56,25 @@ public class Produto {
 
     public void setTipoProduto(String tipoProduto){
         this.tipoProduto = tipoProduto;
+    }
+
+
+    // OVERRIDE
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Produto produto = (Produto) o;
+        return isPerecivel == produto.isPerecivel && nome.equals(produto.nome) && fornecedorProduto.equals(produto.fornecedorProduto) && tipoProduto.equals(produto.tipoProduto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, isPerecivel, fornecedorProduto, tipoProduto);
     }
 }
