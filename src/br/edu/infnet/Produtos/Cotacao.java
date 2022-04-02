@@ -8,8 +8,6 @@ import java.util.Objects;
 
 public class Cotacao {
 
-    private static int id = 1;
-
     private final int productId;
     private final float preco;
     private final String dataCotacao;
@@ -17,7 +15,7 @@ public class Cotacao {
     private final int cotacaoId;
 
     // CONSTRUTOR
-    public Cotacao(int productId, String preco, String dataCotacao, String fornecedorCotacao) throws PrecoInvalidoException, DataInvalidaException {
+    public Cotacao(int cotacaoId, int productId, String preco, String dataCotacao, String fornecedorCotacao) throws PrecoInvalidoException, DataInvalidaException {
         if (!Tools.isPrecoValid(preco)){
             throw new PrecoInvalidoException("O preco inserido eh invalido.");
         }
@@ -29,9 +27,7 @@ public class Cotacao {
             this.preco = Math.round(Float.parseFloat(preco) * 100f) / 100f;
             this.dataCotacao = dataCotacao;
             this.fornecedorCotacao = fornecedorCotacao;
-            this.cotacaoId = Cotacao.id;
-
-            Cotacao.id++;
+            this.cotacaoId = cotacaoId;
         }
     }
 

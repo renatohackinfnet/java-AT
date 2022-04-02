@@ -93,9 +93,7 @@ public class InterfaceIO {
             }
         }
 
-        Produto produto = new Produto(nome, fornecedor, isPerecivel, tipoProduto);
-
-        ViewModel.insertProduto(produto);
+        ViewModel.insertProduto(nome, fornecedor, isPerecivel, tipoProduto);
 
     }
 
@@ -158,14 +156,6 @@ public class InterfaceIO {
             }
         }
 
-
-        try {
-            Cotacao cotacao = new Cotacao(productId, String.valueOf(precoFloat), dataCotacao, fornecedor);
-            ViewModel.insertCotacao(cotacao);
-        } catch (PrecoInvalidoException e) {
-            Tools.println("Erro ao cadastrar cotacao. O preco eh invalido.\n\n\n");
-        } catch (DataInvalidaException e) {
-            Tools.println("Erro ao cadastrar cotacao. A data eh invalido.\n\n\n");
-        }
+        ViewModel.insertCotacao(productId, String.valueOf(precoFloat), dataCotacao, fornecedor);
     }
 }

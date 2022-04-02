@@ -13,16 +13,21 @@ public class DB {
 
     private static DB db;
 
+    private int productId = 1;
+    private int cotacaoId = 1;
+
 
     // CREATE
     public void insertCotacao(Cotacao cotacao){
         this.cotacoes.add(cotacao);
         Tools.println(String.format("A cotacao foi cadastrada com o id %s. \n\n\n", cotacao.getCotacaoId()));
+        this.cotacaoId++;
     }
 
     public void insertProduto(Produto produto){
         this.produtos.add(produto);
         Tools.println(String.format("O produto foi cadastrado com o id %s. \n\n\n", produto.getProductId()));
+        this.productId++;
     }
 
 
@@ -131,6 +136,13 @@ public class DB {
         return this.produtos.size();
     }
 
+    public int getProductId(){
+        return this.productId;
+    }
+
+    public int getCotacaoId(){
+        return this.cotacaoId;
+    }
 
     // INSTANCES
 

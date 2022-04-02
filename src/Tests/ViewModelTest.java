@@ -14,11 +14,9 @@ class ViewModelTest {
     @Test
     void insertProduto() {
 
-        Produto produto = new Produto("arroz", "camil", true, "alimento");
-        ViewModel.insertProduto(produto);
+        ViewModel.insertProduto("arroz", "camil", true, "alimento");
 
-        Produto produto2 = new Produto("arrozz", "camil", true, "alimento");
-        ViewModel.insertProduto(produto2);
+        ViewModel.insertProduto("arrozz", "camil", true, "alimento");
 
         assertEquals(2, db.getProdutosListSize());
     }

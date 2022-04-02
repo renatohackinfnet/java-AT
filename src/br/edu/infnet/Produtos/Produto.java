@@ -6,8 +6,6 @@ import java.util.Objects;
 
 public class Produto {
 
-    private static int id = 1;
-
     private final String nome;
     private boolean isPerecivel;
     private final String fornecedorProduto;
@@ -15,15 +13,14 @@ public class Produto {
     private final int productId;
 
     // CONSTRUTOR
-    public Produto(String nome, String fornecedorProduto, boolean isPerecivel, String tipoProduto) {
+    public Produto(int productId, String nome, String fornecedorProduto, boolean isPerecivel, String tipoProduto) {
         this.nome = nome;
         this.fornecedorProduto = fornecedorProduto;
         this.isPerecivel = isPerecivel;
         this.tipoProduto = tipoProduto;
-        this.productId = Produto.id;
-
-        Produto.id++;
+        this.productId = productId;
     }
+
 
 
     // GETTERS
