@@ -1,5 +1,9 @@
 package br.edu.infnet.Produtos;
 
+import br.edu.infnet.CommonUse.Exceptions.DataInvalidaException;
+import br.edu.infnet.CommonUse.Exceptions.PrecoInvalidoException;
+import br.edu.infnet.CommonUse.Tools;
+
 public class Cotacao {
 
     private static int id = 1;
@@ -11,16 +15,22 @@ public class Cotacao {
     private final int cotacaoId;
 
     // CONSTRUTOR
-    Cotacao(int productId, float preco, String dataCotacao, String fornecedorCotacao){
+    public Cotacao(int productId, String preco, String dataCotacao, String fornecedorCotacao) throws PrecoInvalidoException, DataInvalidaException {
+        if (!Tools.isPrecoValid(preco)){
+            throw new PrecoInvalidoException("O preco inserido eh invalido.");
+        }
+        else if(!Tools.isDateValid(dataCotacao)){
+            throw new DataInvalidaException("A data inserida eh invalida.");
+        }
+        else {
+            this.productId = productId;
+            this.preco = Math.round(Float.parseFloat(preco) * 100f) / 100f;
+            this.dataCotacao = dataCotacao;
+            this.fornecedorCotacao = fornecedorCotacao;
+            this.cotacaoId = Cotacao.id;
 
-
-        this.productId = productId;
-        this.preco = preco;
-        this.dataCotacao = dataCotacao;
-        this.fornecedorCotacao = fornecedorCotacao;
-        this.cotacaoId = Cotacao.id;
-
-        Cotacao.id++;
+            Cotacao.id++;
+        }
     }
 
     // GETTERS
@@ -40,19 +50,7 @@ public class Cotacao {
         return this.fornecedorCotacao;
     }
 
-    private boolean isDateValid(String data){
-
-        String[] arrData = splitData(data);
-
-        if (arrData.length == 3){
-            return true;
-        }
-        return false;
+    public int getCotacaoId() {
+        return this.cotacaoId;
     }
-
-    private String[] splitData(String data){
-        data = data.replace("-", "/").replace(" ", "/");
-        return data.split("/");
-    }
-
 }

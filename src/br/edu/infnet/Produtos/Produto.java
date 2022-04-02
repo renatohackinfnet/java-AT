@@ -1,37 +1,23 @@
 package br.edu.infnet.Produtos;
 
+import br.edu.infnet.CommonUse.Tools;
+
 public class Produto {
 
     private static int id = 1;
 
     private final String nome;
     private boolean isPerecivel;
-    private int durabilidadeEmDiasProdutoFechado;
-    private int durabilidadeEmDiasProdutoAberto;
     private final String fornecedorProduto;
+    private String tipoProduto;
     private final int productId;
 
-    // CONSTRUTORES
-    Produto(String nome, String fornecedorProduto)
-    {
-        this.nome = nome;
-        this.fornecedorProduto = fornecedorProduto;
-        this.productId = Produto.id;
-
-        Produto.id++;
-    }
-
-    Produto(String nome,
-            String fornecedorProduto,
-            boolean isPerecivel,
-            int durabilidadeEmDiasProdutoFechado,
-            int durabilidadeEmDiasProdutoAberto)
-    {
+    // CONSTRUTOR
+    public Produto(String nome, String fornecedorProduto, boolean isPerecivel, String tipoProduto) {
         this.nome = nome;
         this.fornecedorProduto = fornecedorProduto;
         this.isPerecivel = isPerecivel;
-        this.durabilidadeEmDiasProdutoFechado = durabilidadeEmDiasProdutoFechado;
-        this.durabilidadeEmDiasProdutoAberto = durabilidadeEmDiasProdutoAberto;
+        this.tipoProduto = tipoProduto;
         this.productId = Produto.id;
 
         Produto.id++;
@@ -40,45 +26,33 @@ public class Produto {
 
     // GETTERS
 
-    public int getProductId(){
+    public int getProductId() {
         return this.productId;
     }
 
-    public String getNome(){
+    public String getNome() {
         return this.nome;
     }
 
-    public boolean isPerecivel(){
+    public boolean isPerecivel() {
         return this.isPerecivel;
     }
 
-    public int getDurabilidadeEmDiasProdutoFechado(){
-        return this.durabilidadeEmDiasProdutoFechado;
+    public String getTipoProduto() {
+        return this.tipoProduto;
     }
 
-    public int getDurabilidadeEmDiasProdutoAberto(){
-        return this.durabilidadeEmDiasProdutoAberto;
-    }
-
-    public String getFornecedorProduto(){
+    public String getFornecedorProduto() {
         return this.fornecedorProduto;
     }
 
 
     // SETTERS
-    public void durabilidadeEmDiasProdutoFechado(int validade){
-        if (validade > 0){
-            this.durabilidadeEmDiasProdutoFechado = validade;
-        }
-    }
-
-    public void durabilidadeEmDiasProdutoAberto(int validade){
-        if (validade > 0){
-            this.durabilidadeEmDiasProdutoAberto = validade;
-        }
-    }
-
-    public void setPerecivel(boolean isPerecivel){
+    public void setPerecivel(boolean isPerecivel) {
         this.isPerecivel = isPerecivel;
+    }
+
+    public void setTipoProduto(String tipoProduto){
+        this.tipoProduto = tipoProduto;
     }
 }
