@@ -4,6 +4,7 @@ import br.edu.infnet.CommonUse.Exceptions.*;
 import br.edu.infnet.Produtos.*;
 import br.edu.infnet.System.ViewModel;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import static java.lang.System.out;
@@ -15,7 +16,7 @@ public class InterfaceIO {
                 +---------------------------------------------+
                 [1] Cadastrar produto.
                 [2] Cadastrar cotacao.
-                [3] Consultar situação de um docente/discente.
+                [3] Consultar cotacoes de um produto.
                 [0] Sair.
                 +---------------------------------------------+""");
 
@@ -157,5 +158,29 @@ public class InterfaceIO {
         }
 
         ViewModel.insertCotacao(productId, String.valueOf(precoFloat), dataCotacao, fornecedor);
+    }
+
+    public static void listarCotacoesPorProduto() {
+
+        int productId = -1;
+        while (productId == -1) {
+            try {
+                Tools.print("Insira o id do produto que voce deseja ver as cotacoes: ");
+                productId = Tools.getIntegerInput();
+            } catch (NotInteger | EmptyStringException ignored) {
+
+            }
+        }
+
+        if (!ViewModel.productExists(productId)){
+            Tools.println("O id do produto nao existe. Cadastre um produto com esse id antes de tentar cadastrar uma cotacao para ele.");
+            return;
+        }
+
+        ArrayList<Cotacao> listCotacoes = ViewModel.listarCotacoesPorProduto(productId);
+
+        for (Cotacao c : listCotacoes){
+            Tools.println(c.toString());
+        }
     }
 }

@@ -69,4 +69,7 @@ public class ViewModel {
         return (produto != null);
     }
 
+    public static ArrayList<Cotacao> listarCotacoesPorProduto(int productId) {
+        return db.findCotacoesByProductId(productId);
+    }
 }

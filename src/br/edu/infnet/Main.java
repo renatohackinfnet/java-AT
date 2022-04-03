@@ -19,6 +19,7 @@ public class Main {
             switch (opcao) {
                 case 1 -> InterfaceIO.cadastrarProduto();
                 case 2 -> InterfaceIO.cadastrarCotacao();
+                case 3 -> InterfaceIO.listarCotacoesPorProduto();
             }
         }
 

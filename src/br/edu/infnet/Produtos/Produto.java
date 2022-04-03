@@ -21,6 +21,13 @@ public class Produto {
         this.productId = productId;
     }
 
+    public Produto(int productId, String nome, String fornecedorProduto, boolean isPerecivel) {
+        this.nome = nome;
+        this.fornecedorProduto = fornecedorProduto;
+        this.isPerecivel = isPerecivel;
+        this.productId = productId;
+    }
+
 
 
     // GETTERS

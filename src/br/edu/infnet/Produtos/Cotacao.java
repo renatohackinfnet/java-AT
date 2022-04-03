@@ -71,4 +71,13 @@ public class Cotacao {
     public int hashCode() {
         return Objects.hash(productId, preco, dataCotacao, fornecedorCotacao);
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Cotacao Id: %s \n Product Id: %s \n Preco: R$ %.2f1" +
+                        " \n Fornecedor: %s \n Data da Cotacao: %s \n\n",
+                getCotacaoId(), getProductId(), getPreco(), getFornecedorCotacao(), getDataCotacao()
+        );
+    }
 }
