@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Cotacao {
 
     private final int productId;
-    private final float preco;
+    private float preco;
     private final String dataCotacao;
     private final String fornecedorCotacao;
     private final int cotacaoId;
@@ -52,6 +52,13 @@ public class Cotacao {
         return this.cotacaoId;
     }
 
+    // SETTERS
+    public void setPreco(float preco){
+        if (preco > 0){
+            this.preco = preco;
+        }
+    }
+
 
     // OVERRIDE
 
@@ -64,7 +71,7 @@ public class Cotacao {
             return false;
         }
         Cotacao cotacao = (Cotacao) o;
-        return productId == cotacao.productId && Float.compare(cotacao.preco, preco) == 0 && dataCotacao.equals(cotacao.dataCotacao) && fornecedorCotacao.equals(cotacao.fornecedorCotacao);
+        return productId == cotacao.productId && dataCotacao.equals(cotacao.dataCotacao);
     }
 
     @Override
@@ -75,8 +82,14 @@ public class Cotacao {
     @Override
     public String toString() {
         return String.format(
-                "Cotacao Id: %s \n Product Id: %s \n Preco: R$ %.2f1" +
-                        " \n Fornecedor: %s \n Data da Cotacao: %s \n\n",
+                """
+                        Cotacao Id: %s\s
+                         Product Id: %s\s
+                         Preco: R$ %.2f1\s
+                         Fornecedor: %s\s
+                         Data da Cotacao: %s\s
+
+                        """,
                 getCotacaoId(), getProductId(), getPreco(), getFornecedorCotacao(), getDataCotacao()
         );
     }

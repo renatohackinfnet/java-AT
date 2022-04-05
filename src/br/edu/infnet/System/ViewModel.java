@@ -70,6 +70,6 @@ public class ViewModel {
     }
 
     public static ArrayList<Cotacao> listarCotacoesPorProduto(int productId) {
-        return db.findCotacoesByProductId(productId);
+        return db.listCotacoesByProductId(productId);
     }
 }

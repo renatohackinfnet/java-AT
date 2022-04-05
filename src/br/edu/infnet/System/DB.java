@@ -5,6 +5,7 @@ import br.edu.infnet.Produtos.Cotacao;
 import br.edu.infnet.Produtos.Produto;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DB {
 
@@ -51,7 +52,7 @@ public class DB {
             this.produtos.remove(produto);
         }
 
-        for (Cotacao c : findCotacoesByProductId(productId)){
+        for (Cotacao c : listCotacoesByProductId(productId)){
             this.cotacoes.remove(c);
         }
 
@@ -62,7 +63,7 @@ public class DB {
 
         this.produtos.remove(produto);
 
-        for (Cotacao c : findCotacoesByProductId(productId)){
+        for (Cotacao c : listCotacoesByProductId(productId)){
             this.cotacoes.remove(c);
         }
 
@@ -82,6 +83,17 @@ public class DB {
         }
         return cotacao;
     }
+    public Cotacao findCotacaoByProductIdAndDate(int productId, String date){
+        Cotacao cotacao = null;
+
+        for (Cotacao c : this.cotacoes) {
+            if (c.getCotacaoId() == productId && Objects.equals(c.getDataCotacao(), date)) {
+                cotacao = c;
+                break;
+            }
+        }
+        return cotacao;
+    }
 
     public Produto findProdutoById(int id){
         Produto produto = null;
@@ -94,8 +106,19 @@ public class DB {
         }
         return produto;
     }
+    public Produto findProdutoByCodigoBarras(String cod){
+        Produto produto = null;
 
-    public ArrayList<Cotacao> findCotacoesByProductId(int productId){
+        for (Produto p : this.produtos) {
+            if (Objects.equals(p.getCodigoBarras(), cod)) {
+                produto = p;
+                break;
+            }
+        }
+        return produto;
+    }
+
+    public ArrayList<Cotacao> listCotacoesByProductId(int productId){
 
         ArrayList<Cotacao> cotacaoList = new ArrayList<>();
 
@@ -105,6 +128,17 @@ public class DB {
             }
         }
         return cotacaoList;
+    }
+
+    public ArrayList<Produto> listProdutosByFornecedor(String fornecedor){
+        ArrayList<Produto> produtoList = new ArrayList<>();
+
+        for (Produto p : this.produtos) {
+            if (Objects.equals(p.getFornecedorProduto(), fornecedor)) {
+                produtoList.add(p);
+            }
+        }
+        return produtoList;
     }
 
     public ArrayList<Cotacao> getCotacoesList(){
@@ -123,6 +157,14 @@ public class DB {
         if (produto != null){
             produto.setPerecivel(isPerecivel);
             produto.setTipoProduto(tipoProduto);
+        }
+    }
+
+    public void updateCotacao(int cotacaoId, float preco){
+        Cotacao cotacao = this.findCotacaoById(cotacaoId);
+
+        if (cotacao != null){
+            cotacao.setPreco(preco);
         }
     }
 

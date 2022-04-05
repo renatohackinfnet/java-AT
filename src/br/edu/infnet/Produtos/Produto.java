@@ -11,6 +11,7 @@ public class Produto {
     private final String fornecedorProduto;
     private String tipoProduto;
     private final int productId;
+    private final String codigoBarras;
 
     // CONSTRUTOR
     public Produto(int productId, String nome, String fornecedorProduto, boolean isPerecivel, String tipoProduto) {
@@ -19,6 +20,7 @@ public class Produto {
         this.isPerecivel = isPerecivel;
         this.tipoProduto = tipoProduto;
         this.productId = productId;
+        this.codigoBarras = Integer.toBinaryString(productId);
     }
 
     public Produto(int productId, String nome, String fornecedorProduto, boolean isPerecivel) {
@@ -26,6 +28,7 @@ public class Produto {
         this.fornecedorProduto = fornecedorProduto;
         this.isPerecivel = isPerecivel;
         this.productId = productId;
+        this.codigoBarras = Integer.toBinaryString(productId);
     }
 
 
@@ -52,6 +55,9 @@ public class Produto {
         return this.fornecedorProduto;
     }
 
+    public String getCodigoBarras() {
+        return this.codigoBarras;
+    }
 
     // SETTERS
     public void setPerecivel(boolean isPerecivel) {
