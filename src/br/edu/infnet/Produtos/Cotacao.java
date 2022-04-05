@@ -4,18 +4,21 @@ import br.edu.infnet.CommonUse.Exceptions.DataInvalidaException;
 import br.edu.infnet.CommonUse.Exceptions.PrecoInvalidoException;
 import br.edu.infnet.CommonUse.Tools;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class Cotacao {
 
     private final int productId;
     private float preco;
-    private final String dataCotacao;
+    private final Date dataCotacao;
     private final String fornecedorCotacao;
     private final int cotacaoId;
 
     // CONSTRUTOR
-    public Cotacao(int cotacaoId, int productId, String preco, String dataCotacao, String fornecedorCotacao) throws PrecoInvalidoException, DataInvalidaException {
+    public Cotacao(int cotacaoId, int productId, String preco, String dataCotacao, String fornecedorCotacao) throws PrecoInvalidoException, DataInvalidaException, ParseException {
         if (!Tools.isPrecoValid(preco)){
             throw new PrecoInvalidoException("O preco inserido eh invalido.");
         }
@@ -25,7 +28,7 @@ public class Cotacao {
         else {
             this.productId = productId;
             this.preco = Math.round(Float.parseFloat(preco) * 100f) / 100f;
-            this.dataCotacao = dataCotacao;
+            this.dataCotacao = new SimpleDateFormat("dd/MM/yyyy").parse(dataCotacao);
             this.fornecedorCotacao = fornecedorCotacao;
             this.cotacaoId = cotacaoId;
         }
@@ -41,7 +44,10 @@ public class Cotacao {
     }
 
     public String getDataCotacao(){
-        return this.dataCotacao;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+        return sdf.format(this.dataCotacao);
     }
 
     public String getFornecedorCotacao(){
@@ -85,7 +91,7 @@ public class Cotacao {
                 """
                         Cotacao Id: %s\s
                          Product Id: %s\s
-                         Preco: R$ %.2f1\s
+                         Preco: R$ %.2f\s
                          Fornecedor: %s\s
                          Data da Cotacao: %s\s
 

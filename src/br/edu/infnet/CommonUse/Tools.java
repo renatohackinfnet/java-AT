@@ -2,7 +2,10 @@ package br.edu.infnet.CommonUse;
 
 import br.edu.infnet.CommonUse.Exceptions.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 import static java.lang.System.in;
@@ -52,13 +55,15 @@ public class Tools {
         return valor >= initialValue && valor <= finalValue;
     }
 
-    public static boolean isDateValid(String data) {
+    public static boolean isDateValid(String dataString) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         int dia;
         int mes;
         int ano;
 
-        String[] arrData = splitData(data);
+        String[] arrData = splitData(dataString);
 
         if (arrData.length != 3) {
             return false;
@@ -69,6 +74,12 @@ public class Tools {
             mes = Integer.parseInt(arrData[1]);
             ano = Integer.parseInt(arrData[2]);
         } catch (NumberFormatException e){
+            return false;
+        }
+
+        try {
+            Date date = sdf.parse(dataString);
+        } catch (ParseException e) {
             return false;
         }
 

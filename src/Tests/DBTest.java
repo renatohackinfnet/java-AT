@@ -6,12 +6,14 @@ import br.edu.infnet.Produtos.Cotacao;
 import br.edu.infnet.Produtos.Produto;
 import br.edu.infnet.System.DB;
 
+import java.text.ParseException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DBTest {
 
     @org.junit.jupiter.api.Test
-    void insertCotacao() throws PrecoInvalidoException, DataInvalidaException {
+    void insertCotacao() throws PrecoInvalidoException, DataInvalidaException, ParseException {
         DB db = DB.newInstance();
         Cotacao cotacao = new Cotacao(1,1, "22.22", "23/12/2023", "Parmalat");
         db.insertCotacao(cotacao);
@@ -27,7 +29,7 @@ class DBTest {
     }
 
     @org.junit.jupiter.api.Test
-    void deleteCotacao() throws PrecoInvalidoException, DataInvalidaException {
+    void deleteCotacao() throws PrecoInvalidoException, DataInvalidaException, ParseException {
         DB db = DB.newInstance();
         Cotacao cotacao = new Cotacao(1, 1, "22.22", "23/12/2023", "Parmalat");
         db.insertCotacao(cotacao);
@@ -39,7 +41,7 @@ class DBTest {
     }
 
     @org.junit.jupiter.api.Test
-    void deleteProduto() throws PrecoInvalidoException, DataInvalidaException {
+    void deleteProduto() throws PrecoInvalidoException, DataInvalidaException, ParseException {
         DB db = DB.newInstance();
 
         //INSERT PRODUTO
@@ -59,7 +61,7 @@ class DBTest {
     }
 
     @org.junit.jupiter.api.Test
-    void findCotacaoById() throws PrecoInvalidoException, DataInvalidaException {
+    void findCotacaoById() throws PrecoInvalidoException, DataInvalidaException, ParseException {
         DB db = DB.newInstance();
 
         Cotacao cotacao = new Cotacao(1, 1, "22.22", "23/12/2023", "Parmalat");

@@ -6,6 +6,7 @@ import br.edu.infnet.CommonUse.Tools;
 import br.edu.infnet.Produtos.Cotacao;
 import br.edu.infnet.Produtos.Produto;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class ViewModel {
@@ -42,7 +43,7 @@ public class ViewModel {
         } catch (PrecoInvalidoException e) {
             Tools.println("O preco eh invalido. Operacao abortada.");
             return;
-        } catch (DataInvalidaException e) {
+        } catch (DataInvalidaException | ParseException e) {
             Tools.println("A data eh invalida. Operacao abortada.");
             return;
         }
